@@ -1,5 +1,6 @@
 package Soru_01_;
 
+import Model.ToDo;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.builder.ResponseSpecBuilder;
 import io.restassured.filter.log.LogDetail;
@@ -86,6 +87,33 @@ public class _05_Tasks {
         Assert.assertFalse(complatedData);
 
     }
+
+    /** Task 3
+     * create a request to https://jsonplaceholder.typicode.com/todos/2
+     * expect status 200
+     * Converting Into POJO body data and write
+     */
+
+
+    @Test
+    public void Task3(){
+
+        ToDo todoNesne=
+                given()
+                        .when()
+                        .get("https://jsonplaceholder.typicode.com/todos/2")
+
+                        .then()
+                        //.log().body()
+                        .extract().body().as(ToDo.class)
+                ;
+
+        System.out.println("todoNesne = " + todoNesne);
+        System.out.println("todoNesne.getTitle() = " + todoNesne.getTitle());
+        System.out.println("todoNesne.getId() = " + todoNesne.getId());
+        System.out.println("todoNesne.isCompleted() = " + todoNesne.isCompleted());
+    }
+
 
     }
 
