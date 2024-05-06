@@ -53,7 +53,9 @@ public class _04_ApiTestPOJO {
         }
 
 
-
-
+ // 2. yöntem   ,
+        for (Place p: locationNesnesi.getPlaces())
+            if (p.getPlacename().equalsIgnoreCase("dörtağaç köyü"))
+                System.out.println("p = " + p);
     }
 }
