@@ -31,5 +31,10 @@ public class ApiKeyTest {
     // postmande query parameter istirosa Api key seçildikten sonra Eklenme türü seçilebilir.
     // header veya query parameter hali
     // hangisi isteniyorsa ona göre yapılıyor
-
+//    anahtar yöntemi: barrear token
+//    Api Key yöntemi :rtrtrgfgfgdf54ggh
+//    endpoint: https://l9njuzrhf3.execute-api.eu-west-1.amazonaws.com/prod/user
+//    ApiKey in Key ve Values i  vardır
+//    Key : x-api-key
+//    Values: GwMco9Tpstd5vbzBzlzW9I7hr6E1D7w2zEIrhOra
 }
