@@ -8,7 +8,7 @@ import io.restassured.specification.RequestSpecification;
 import org.testng.annotations.AfterGroups;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-
+import static org.hamcrest.Matchers.*;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -129,6 +129,7 @@ public class _06_CountryTest {
                 .then()
                 .log().body()
                 .statusCode(200)
+                .body("name",equalTo(updCountryName))// gönderdiğimiz ülke adının dönen body deki ilke adıyka aynı
         ;
 
          // TODO: bu örneğe gönderdiğiniz ülke adının , dönen body deki ülke adıyla aynı
@@ -136,8 +137,40 @@ public class _06_CountryTest {
     }
 
 
-    @Test
-    public void Test(){
+    @Test(dependsOnMethods = "UpdateCountry")
+    public void DeleteCountry(){
+
+
+
+        given()
+                .spec(reqSpec)
+
+                .when()
+                .delete("/school-service/api/countries/"+countryID)
+
+                .then()
+              //  .log().body()
+                .statusCode(200)
+        ;
+
+
+
+    }
+    @Test(dependsOnMethods = "DeleteCountry")
+    public void DeleteCountryNegative(){
+
+
+
+        given()
+                .spec(reqSpec)
+
+                .when()
+                .delete("/school-service/api/countries/"+countryID)
+
+                .then()
+                //  .log().body()
+                .statusCode(400)
+        ;
 
 
 
