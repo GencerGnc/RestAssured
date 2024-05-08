@@ -96,10 +96,10 @@ public class GoRestUsersTest {
     @Test(dependsOnMethods = "GetUserById")
     public void UpdateUser(){
 
-        String updUserName="BOB";
+        String NewUserName="sellamin";
 
         Map<String,String> UpdatenewUser=new HashMap<>();
-       UpdatenewUser.put("name",updUserName);
+       UpdatenewUser.put("name",NewUserName);
 
 
                 given()
@@ -112,9 +112,45 @@ public class GoRestUsersTest {
                         .then()
                         .log().body()
                         .statusCode(200)
-                        .body("name", equalTo(updUserName))
+                        .body("name", equalTo(NewUserName))
+                        .body("id", equalTo(userID))
+                        //.extract().response().statusCode() status codu dışarıya almak için
         ;
 
+    }
+    @Test(dependsOnMethods = "UpdateUser")
+    public void DeleteUsers(){
+
+
+        given()
+                .spec(reqSpec)
+                .when()
+                .delete("/"+userID)
+
+                .then()
+                .log().body()
+                .statusCode(204)
+
+        ;
+
+
+    }
+
+    @Test(dependsOnMethods = "DeleteUsers")
+    public void DeleteUserNegative(){
+
+
+
+        given()
+                .spec(reqSpec)
+                .when()
+                .delete("/"+userID)
+
+                .then()
+
+                .statusCode(404)
+
+        ;      //  <argLine>-Duser.language=en</argLine>   DELETE NEGATİVE İÇİN BUNU POM A EKLE
     }
 
 
